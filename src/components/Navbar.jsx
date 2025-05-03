@@ -20,23 +20,24 @@ const Navbars = () => {
       }, []);
   const expand = 'md';
 
-  useEffect(() => {
-    axios.get('http://localhost:8000/logo/latest/')
-      .then((response) => {
+  // useEffect(() => {
+  //   axios.get('http://localhost:8000/logo/latest/')
+  //     .then((response) => {
         
-        if (response.data.picture){
-          setDataLogo(`http://localhost:8000${response.data.picture}`);
-          console.log(response.data)
-        }
-      })
-      .catch((error) => console.error('Error fetching logo:', error));
-  }, []);
+  //       if (response.data.picture){
+  //         setDataLogo(`http://localhost:8000${response.data.picture}`);
+  //         console.log(response.data)
+  //       }
+  //     })
+  //     .catch((error) => console.error('Error fetching logo:', error));
+  // }, []);
 
   return (
     <Navbar expand={expand} className="nav_bar">
       <Container fluid>
         <Navbar.Brand href="/" className="nav_logo ms-md-5">
-        {DataLogo ? (<img src={DataLogo} alt='err' width="200px"/>) : (<img src={logo} alt='err' width="200px"/>)}
+        <img src={logo} alt='err' width="200px"/>
+        {/* {DataLogo ? (<img src={DataLogo} alt='err' width="200px"/>) : (<img src={logo} alt='err' width="200px"/>)} */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className="nav_button" />
         <Navbar.Offcanvas
@@ -46,7 +47,8 @@ const Navbars = () => {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-            {DataLogo ? (<img src={DataLogo} alt='err' width="200px"/>) : (<img src={logo} className="nav_img" alt="Brand Logo" width="100px"/>)}
+            <img src={logo} className="nav_img" alt="Brand Logo" width="100px"/>
+            {/* {DataLogo ? (<img src={DataLogo} alt='err' width="200px"/>) : (<img src={logo} className="nav_img" alt="Brand Logo" width="100px"/>)} */}
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
