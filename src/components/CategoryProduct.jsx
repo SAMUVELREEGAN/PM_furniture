@@ -1,0 +1,172 @@
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { products } from '../Data/Product';
+import { type } from '../Data/type';
+import { categories } from '../Data/categories'; // Import categories
+import CategoryItem from './CategoryItem';
+import { Container, Row, Col } from 'react-bootstrap';
+import './CategoryProduct.css';
+
+const CategoryProduct = () => {
+  const { categorie, link_name } = useParams();
+  const [materialType, setMaterialType] = useState('');
+  const [sortOption, setSortOption] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(''); // New state for selected category
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [compareProducts, setCompareProducts] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();  // Get current page location
+
+  // Check if we are on the dealer page
+  const isDealerPage = location.pathname.startsWith('/dealer'); 
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  useEffect(() => {
+    let filtered = products;
+
+    // Filter products by category if selected
+    if (selectedCategory) {
+      filtered = filtered.filter((pro) => pro.category === selectedCategory);
+    }
+
+    if (categorie && link_name) {
+      filtered = filtered.filter(
+        (pro) => pro.category === categorie && pro.link_name === link_name
+      );
+    } else if (categorie) {
+      filtered = filtered.filter(
+        (pro) => pro.category === categorie && pro.link_name === 'all'
+      );
+    } else if (link_name) {
+      filtered = filtered.filter((pro) => pro.link_name === link_name);
+    }
+
+    if (materialType) {
+      filtered = filtered.filter(
+        (pro) => pro.type?.toLowerCase() === materialType.toLowerCase()
+      );
+    }
+
+    if (sortOption === 'lowToHigh') {
+      filtered = filtered.sort((a, b) => a.price - b.price);
+    } else if (sortOption === 'highToLow') {
+      filtered = filtered.sort((a, b) => b.price - a.price);
+    }
+
+    setFilteredProducts(filtered);
+  }, [categorie, link_name, materialType, sortOption, selectedCategory]);
+
+  const handleCompare = (product) => {
+    const isAlreadyCompared = compareProducts.some((p) => p.id === product.id);
+
+    if (isAlreadyCompared) {
+      setCompareProducts((prev) => prev.filter((p) => p.id !== product.id));
+    } else {
+      if (compareProducts.length >= 2) {
+        alert('You can only compare two products at a time.');
+        return;
+      }
+      setCompareProducts((prev) => [...prev, product]);
+    }
+  };
+
+  useEffect(() => {
+    if (compareProducts.length === 2) {
+      navigate('/compare', { state: { products: compareProducts } });
+    }
+  }, [compareProducts, navigate]);
+
+  return (
+    <>
+      <div className="filter-bar container-fluid sticky-top bg-white py-3 shadow-sm">
+        <div className="d-flex flex-wrap justify-content-between align-items-center gap-3">
+          <div className="d-flex align-items-center gap-2">
+            <label htmlFor="materialType" className="fw-semibold mb-0">
+              <span className="filter_name">Material Type:</span>
+            </label>
+            <select
+              id="materialType"
+              className="form-select w-auto"
+              onChange={(e) => setMaterialType(e.target.value)}
+              value={materialType}
+            >
+              <option value="">All</option>
+              {type.map((item, index) => (
+                <option key={index} value={item}>
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="d-flex align-items-center gap-2">
+            <label htmlFor="sortBy" className="fw-semibold mb-0 filter_name">
+              Sort By:
+            </label>
+            <select
+              id="sortBy"
+              className="form-select w-auto"
+              onChange={(e) => setSortOption(e.target.value)}
+              value={sortOption}
+            >
+              <option value="">Recommended</option>
+              <option value="lowToHigh">Price: Low to High</option>
+              <option value="highToLow">Price: High to Low</option>
+            </select>
+          </div>
+
+          {/* Category Filter: Only for Dealer Page */}
+          {isDealerPage && (
+            <div className="d-flex align-items-center gap-2">
+              <label htmlFor="category" className="fw-semibold mb-0 filter_name">
+                <span className="filter_name">Category:</span>
+              </label>
+              <select
+                id="category"
+                className="form-select w-auto"
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                value={selectedCategory}
+              >
+                <option value="">All Categories</option>
+                {categories.map((item, index) => (
+                  <option key={index} value={item.categorie}>
+                    {item.categorie.charAt(0).toUpperCase() + item.categorie.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <Container className="py-4">
+        <Row>
+          {filteredProducts.map((product, i) => {
+            const isCompared = compareProducts.some((p) => p.id === product.id);
+            return (
+              <Col
+                key={i}
+                xs={12}
+                sm={6}
+                md={6}
+                lg={3}
+                className="mb-4 d-flex justify-content-center"
+              >
+                <CategoryItem
+                  product={product}
+                  onCompare={handleCompare}
+                  isCompared={isCompared}
+                />
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
+    </>
+  );
+};
+
+export default CategoryProduct;

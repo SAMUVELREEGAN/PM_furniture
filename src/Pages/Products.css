@@ -1,5 +1,6 @@
 body{
     background-color: rgba(220, 236, 248, 0.351) !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 .product-hero {
     background-image: url('../assets/pro_img.jpg');
@@ -69,3 +70,47 @@ body{
     font-size: 18px;
     color: #333;
   }
+
+
+  .filter-sidebar {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: fit-content;
+    margin-left: 3%;
+  }
+  
+.search{
+  background-color: rgb(0, 19, 128);
+  color: white;
+}
+
+  @media (min-width: 768px) {
+    .filter-sidebar {
+      position: sticky;
+      top: 0;
+      /* margin-left: 3%; */
+    }
+  }
+  @media (max-width: 768px) {
+    .filter-sidebar {
+      margin-left: 0%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .product_header {
+     height: 150px;
+    }
+    /* .product_search{
+     margin-left: 5%;
+    } */
+  }
+
+  @media (max-width: 768px) {
+    .pagination-wrapper {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  

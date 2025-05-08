@@ -1,0 +1,15 @@
+
+  
+  .carousel-img-container {
+    width: 100%;
+    /* height: 70vh;  */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #f7f7f7; */
+  }
+
+  .carousel-img-container img{
+    height: 100%;
+  }

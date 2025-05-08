@@ -6,13 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router } from 'react-router-dom';
+import 'swiper/css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
   </Router>
 );
 

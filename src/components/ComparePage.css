@@ -1,0 +1,14 @@
+.compare-page {
+    background-color: #f8f9fa;
+  }
+  
+  .compare-table th,
+  .compare-table td {
+    vertical-align: middle;
+  }
+  
+  .compare-table img {
+    border-radius: 8px;
+    max-width: 100%;
+  }
+  

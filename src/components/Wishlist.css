@@ -1,0 +1,44 @@
+.wishlist-page h3 {
+    text-align: center;
+  }
+  
+  .wishlist-card:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background-color: rgb(246, 241, 255);
+  }
+
+  .item-titlesa {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    /* width: 250px !important; */
+  }
+
+  .item-descriptionko {
+    font-size: 0.95rem;
+    color: #333;
+    text-align: center;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Hide delete icon by default */
+.delete-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show delete icon only on hover */
+.hover-card:hover .delete-icon {
+  opacity: 1;
+}

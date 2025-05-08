@@ -1,0 +1,19 @@
+.footer {
+    background-color: #343a40;
+  }
+  
+  .footer-link {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .footer-link:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  .footer p,
+  .footer h5 {
+    color: #eee;
+  }
+  
