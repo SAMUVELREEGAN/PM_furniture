@@ -4,5 +4,17 @@ import ani5 from '../assets/fur5.jpg'
 
 
 export const animated = [
-    ani1 , ani2 , ani5
+    {
+        id:1,
+        title:"Wood",
+        pic:ani1
+    },{
+        id:2,
+        title:"Wood",
+        pic:ani2
+    },{
+        id:3,
+        title:"Wood",
+        pic:ani5
+    },
 ]

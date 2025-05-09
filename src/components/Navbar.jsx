@@ -91,9 +91,9 @@ const Navbars = () => {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3 me-5">
                 <Nav.Link onClick={() => handleNavClick('/')} className="me-3 nav_head">Home</Nav.Link>
-                <Nav.Link onClick={() => handleNavClick('/')} className="me-3 nav_head">About</Nav.Link>
+                <Nav.Link onClick={() => handleNavClick('/about')} className="me-3 nav_head">About</Nav.Link>
                 <Nav.Link onClick={() => handleNavClick('/product')} className="me-3 nav_head">Product</Nav.Link>
-                <Nav.Link onClick={() => handleNavClick('/')} className="me-3 nav_head">Contact</Nav.Link>
+                <Nav.Link onClick={() => handleNavClick('/contact')} className="me-3 nav_head">Contact</Nav.Link>
                 <Nav.Link onClick={() => handleNavClick('/wishlist')} className="me-3 nav_head">Wishlist <GoHeartFill style={{color:"red",fontSize:"20px"}}/> </Nav.Link>
               </Nav>
             </Offcanvas.Body>

@@ -102,10 +102,13 @@ body{
     .product_header {
      height: 150px;
     }
+    
     /* .product_search{
      margin-left: 5%;
     } */
   }
+
+
 
   @media (max-width: 768px) {
     .pagination-wrapper {

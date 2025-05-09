@@ -7,6 +7,8 @@ import ProductDetails from './components/ProductDetails';
 import CategoryProduct from './components/CategoryProduct';
 import ComparePage from './components/ComparePage';
 import Wishlist from './components/Wishlist';
+import About from './components/About';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path='/' element={<MyLayout />}>
         <Route path='/' element={<Home />}></Route>
         <Route path='/product' element={<Products />}></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/contact' element={<Contact />}></Route>
         <Route path='/product/:id' element={<ProductDetails />}></Route>
         <Route path='/products/:categorie' element={<CategoryProduct />}></Route>
         <Route path='/compare' element={<ComparePage />}></Route>

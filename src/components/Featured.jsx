@@ -11,7 +11,7 @@ const Featured = () => {
     .slice(0, 10); // Limit to 5
 
   return (
-    <div className="featured-section container">
+    <div className="featured-section container my-3">
       <h2 className="text-center mb-4" style={{ color: '#102D59' }}>Featured Products</h2>
          <div className="product-card">
          {featuredProducts.map((product) => (

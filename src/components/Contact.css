@@ -1,0 +1,40 @@
+
+.form-input{
+    width: 250px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #ffff;
+  }
+  
+  .contact-form{
+  
+    background-color: #112d57;
+    color: white;
+  }
+  
+  .t-blue {
+    color: #ffff; /* or any color you want */
+    background-color: #112d57;
+    border: black solid 2px ;
+    border-radius: 50%;
+  }
+  
+  .t-blue:hover {
+    color: #0f8420; /* or any color you want */
+    background-color:  #ffff;
+    
+  }
+  
+  .contact-detail a{
+    color: #112d57;
+   
+  }
+  
+  .contact-detail a:hover{
+    font-weight: bolder;
+  }
+  
