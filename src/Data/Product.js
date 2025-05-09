@@ -33,19 +33,19 @@ export const products = [
     },{
         id :3,
         pro_img:[pic3 , pic1 , pic2 ],
-        pro_name : "demo 3",
+        pro_name : "this is b",
         description:"Description is any type of communication that aims to make vivid a place, object, person, group, or other physical entity",
         star:"no",
         price:2000,
         category:"chair",
-        color:"red",
+        color:"blue",
         type:"wood",
         size:'3',
         link_name:'b'
     },{
         id :4,
         pro_img:[pic4 ,pic1 , pic2 , pic3 , pic4 ],
-        pro_name : "demo 4",
+        pro_name : "demo s4",
         description:"Description is any type of communication that aims to make vivid a place, object, person, group, or other physical entity",
         star:"no",
         price:4000,

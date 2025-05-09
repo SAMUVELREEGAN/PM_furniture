@@ -9,6 +9,7 @@ import ComparePage from './components/ComparePage';
 import Wishlist from './components/Wishlist';
 import About from './components/About';
 import Contact from './components/Contact';
+import CategoryProductDetails from './components/CategoryProductDetails';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/wishlist' element={<Wishlist />}></Route>
         </Route>
         <Route path='/dealer/:link_name' element={<CategoryProduct />}></Route>
+        <Route path='/dealer/:link_name/:id' element={<CategoryProductDetails />}></Route>
        
       </Routes> 
     </div>

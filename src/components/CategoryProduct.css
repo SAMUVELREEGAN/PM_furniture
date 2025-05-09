@@ -6,3 +6,23 @@
         display: none !important;
     }
   }
+
+  @media (max-width: 768px) {
+  .filter-bar {
+    white-space: nowrap;
+  }
+
+  .filter-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter_name {
+    font-size: 12px;
+  }
+
+  .form-select-sm {
+    font-size: 12px;
+    padding: 0.25rem 0.5rem;
+  }
+}

@@ -81,66 +81,65 @@ const CategoryProduct = () => {
 
   return (
     <>
-      <div className="filter-bar container-fluid sticky-top bg-white py-3 shadow-sm">
-        <div className="d-flex flex-wrap justify-content-between align-items-center gap-3">
-          <div className="d-flex align-items-center gap-2">
-            <label htmlFor="materialType" className="fw-semibold mb-0">
-              <span className="filter_name">Material Type:</span>
-            </label>
-            <select
-              id="materialType"
-              className="form-select w-auto"
-              onChange={(e) => setMaterialType(e.target.value)}
-              value={materialType}
-            >
-              <option value="">All</option>
-              {type.map((item, index) => (
-                <option key={index} value={item}>
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </option>
-              ))}
-            </select>
-          </div>
+   <div className="filter-bar container-fluid sticky-top bg-white py-2 shadow-sm">
+  <div className="d-flex overflow-auto gap-3 flex-nowrap align-items-center px-2 filter-scroll">
+    
+    {/* Material Type */}
+    <div className="d-flex align-items-center gap-1">
+      <label htmlFor="materialType" className="fw-semibold mb-0 filter_name text-nowrap">Material Type:</label>
+      <select
+        id="materialType"
+        className="form-select form-select-sm w-auto"
+        onChange={(e) => setMaterialType(e.target.value)}
+        value={materialType}
+      >
+        <option value="">All</option>
+        {type.map((item, index) => (
+          <option key={index} value={item}>
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </option>
+        ))}
+      </select>
+    </div>
 
-          <div className="d-flex align-items-center gap-2">
-            <label htmlFor="sortBy" className="fw-semibold mb-0 filter_name">
-              Sort By:
-            </label>
-            <select
-              id="sortBy"
-              className="form-select w-auto"
-              onChange={(e) => setSortOption(e.target.value)}
-              value={sortOption}
-            >
-              <option value="">Recommended</option>
-              <option value="lowToHigh">Price: Low to High</option>
-              <option value="highToLow">Price: High to Low</option>
-            </select>
-          </div>
+    {/* Sort By */}
+    <div className="d-flex align-items-center gap-1">
+      <label htmlFor="sortBy" className="fw-semibold mb-0 filter_name text-nowrap">Sort By:</label>
+      <select
+        id="sortBy"
+        className="form-select form-select-sm w-auto"
+        onChange={(e) => setSortOption(e.target.value)}
+        value={sortOption}
+      >
+        <option value="">Recommended</option>
+        <option value="lowToHigh">Price: Low to High</option>
+        <option value="highToLow">Price: High to Low</option>
+      </select>
+    </div>
 
-          {/* Category Filter: Only for Dealer Page */}
-          {isDealerPage && (
-            <div className="d-flex align-items-center gap-2">
-              <label htmlFor="category" className="fw-semibold mb-0 filter_name">
-                <span className="filter_name">Category:</span>
-              </label>
-              <select
-                id="category"
-                className="form-select w-auto"
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                value={selectedCategory}
-              >
-                <option value="">All Categories</option>
-                {categories.map((item, index) => (
-                  <option key={index} value={item.categorie}>
-                    {item.categorie.charAt(0).toUpperCase() + item.categorie.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-        </div>
+    {/* Category */}
+    {isDealerPage && (
+      <div className="d-flex align-items-center gap-1">
+        <label htmlFor="category" className="fw-semibold mb-0 filter_name text-nowrap">Category:</label>
+        <select
+          id="category"
+          className="form-select form-select-sm w-auto"
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          value={selectedCategory}
+        >
+          <option value="">All Categories</option>
+          {categories.map((item, index) => (
+            <option key={index} value={item.categorie}>
+              {item.categorie.charAt(0).toUpperCase() + item.categorie.slice(1)}
+            </option>
+          ))}
+        </select>
       </div>
+    )}
+    
+  </div>
+</div>
+
 
       <Container className="py-4">
         <Row>

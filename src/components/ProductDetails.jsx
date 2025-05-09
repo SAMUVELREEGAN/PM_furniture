@@ -1,28 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { products } from '../Data/Product';
-// import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import Item from './Item';
 import '../components/ProductDetails.css';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-
-// import './styles.css';
-
-// import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { FaShareSquare } from "react-icons/fa";
 
 const ProductDetails = () => {
-
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
   const { id } = useParams();
   const location = useLocation();
   const product = products.find((pro) => pro.id.toString() === id);
@@ -63,6 +54,21 @@ const ProductDetails = () => {
     localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
   };
 
+  const handleShare = () => {
+    const shareData = {
+      title: product.pro_name,
+      text: `Check out this product: ${product.pro_name}`,
+      url: window.location.href
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData).catch((err) => console.error('Share failed:', err));
+    } else {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`${shareData.text} - ${shareData.url}`)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  };
+
   if (!product) return <div className="text-center py-5">Product not found</div>;
 
   const totalPrice = product.price * quantity;
@@ -72,10 +78,11 @@ const ProductDetails = () => {
       <Row>
         <Col md={7} className="mb-4">
           <div>
-            <Swiper style={{
-              '--swiper-navigation-color': '#fff',
-              '--swiper-pagination-color': '#fff',
-            }}
+            <Swiper
+              style={{
+                '--swiper-navigation-color': '#fff',
+                '--swiper-pagination-color': '#fff',
+              }}
               loop={true}
               spaceBetween={10}
               navigation={true}
@@ -115,10 +122,11 @@ const ProductDetails = () => {
           </div>
 
           <div className='mt-3'>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}></div>
             <h2 style={{ color: "#102D59", fontWeight: "700" }}>{product.pro_name}</h2>
-            <h2><span><del className="text-danger">₹{product.price + 200}</del></span> ₹{product.price}</h2>
+            <h2>
+              <span><del className="text-danger">₹{product.price + 200}</del></span> ₹{product.price}
+            </h2>
             <p>{product.category}</p>
             <p className='mt-3'>{product.description}</p>
           </div>
@@ -127,21 +135,22 @@ const ProductDetails = () => {
         <Col md={1}></Col>
 
         <Col md={4}>
-          <div className='d-flex flex-wrap justify-content-between px-2'>
+          <div className='d-flex flex-wrap justify-content-around'>
             <button
               onClick={toggleWishlist}
               style={{
-                width: "100%",
+                width:"50%",
                 backgroundColor: isWishlisted ? "red" : "#f0f0f0",
                 color: isWishlisted ? "white" : "black",
                 border: "none",
                 padding: "10px",
                 borderRadius: "5px",
-                margin:"10px 0px"
+                margin: "10px 0px"
               }}
             >
               {isWishlisted ? "Wishlisted ❤️" : "Add to Wishlist ♡"}
             </button>
+            <button onClick={handleShare} style={{background:"#f0f0f0" , border:"none",borderRadius: "5px", width:"45%",margin: "10px 0px"}}> <span className='me-1'>Share</span><FaShareSquare/></button>
           </div>
 
           <div style={{
