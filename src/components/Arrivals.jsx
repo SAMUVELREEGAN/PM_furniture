@@ -1,11 +1,13 @@
 import{ useState, useEffect } from 'react';
 import './Arrivals.css';
-import { products } from '../Data/Product';
+// import { products } from '../Data/Product';
 import { FaIndianRupeeSign } from "react-icons/fa6";    
 import { Link } from 'react-router-dom';
 import { MdFavorite } from "react-icons/md"; // Import the heart icon
+import { useMyContext } from '../context/MyContext';
 
 const Arrivals = () => {
+  const {products , BASE_URL} = useMyContext()
   const [wishlist, setWishlist] = useState([]);
 
   // Load wishlist from localStorage on component mount
@@ -46,7 +48,11 @@ const Arrivals = () => {
               <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div style={{ height: "200px", overflow: "hidden" }}>
                   <img
-                    src={Array.isArray(product.pro_img) ? product.pro_img[0] : product.pro_img}
+                   src={
+                        product.images && product.images.length > 0
+                          ? `${BASE_URL}${product.images[0].image}`
+                          : ''
+                      }
                     className="card-img-top"
                     alt={product.pro_name}
                     style={{ height: '200px', objectFit: 'cover' }}

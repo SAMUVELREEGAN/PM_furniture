@@ -17,6 +17,7 @@ export const MyContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+
         // Fetch categories
         const categoriesRes = await axios.get('http://127.0.0.1:8000/api/categories/');
         setCategories(categoriesRes.data);
@@ -46,11 +47,15 @@ export const MyContextProvider = ({ children }) => {
       }
     };
 
+    
+
     fetchData();
   }, []); // Runs once when the component mounts
 
+   const BASE_URL = 'http://localhost:8000';
+   
   return (
-    <MyContext.Provider value={{ categories, colorList, typeList, webLinks, products, size, error }}>
+    <MyContext.Provider value={{ categories, colorList, typeList, webLinks, products, size, error ,BASE_URL }}>
       {children}
     </MyContext.Provider>
   );
