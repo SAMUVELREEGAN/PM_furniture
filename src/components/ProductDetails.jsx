@@ -30,6 +30,8 @@ const ProductDetails = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log(window.location);
+    
   }, [location.pathname]);
 
   useEffect(() => {

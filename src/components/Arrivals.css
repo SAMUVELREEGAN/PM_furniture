@@ -27,15 +27,15 @@
     color: red;
   }
 
-  .item-description {
+  .item-descriptionx {
     font-size: 0.95rem;
     color: #333;
-    text-align: center;
+    /* text-align: center; */
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
   }
   

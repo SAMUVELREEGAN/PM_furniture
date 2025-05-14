@@ -95,6 +95,7 @@ const Navbars = () => {
                 <Nav.Link onClick={() => handleNavClick('/product')} className="me-3 nav_head">Product</Nav.Link>
                 <Nav.Link onClick={() => handleNavClick('/contact')} className="me-3 nav_head">Contact</Nav.Link>
                 <Nav.Link onClick={() => handleNavClick('/wishlist')} className="me-3 nav_head">Wishlist <GoHeartFill style={{color:"red",fontSize:"20px"}}/> </Nav.Link>
+                {/* <Nav.Link onClick={() => handleNavClick('/dealer/a')} className="me-3 nav_head">A </Nav.Link> */}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

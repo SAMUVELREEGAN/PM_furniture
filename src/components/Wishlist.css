@@ -33,12 +33,12 @@
   }
 
   /* Hide delete icon by default */
-.delete-icon {
+/* .delete-icon {
   opacity: 0;
   transition: opacity 0.3s ease;
-}
+} */
 
 /* Show delete icon only on hover */
-.hover-card:hover .delete-icon {
+/* .hover-card:hover .delete-icon {
   opacity: 1;
-}
+} */

@@ -8,19 +8,27 @@ import pic6 from '../assets/pro6.jpg'
 export const products = [
    {
         id :1,
-        pro_img:[pic6 , pic2 , pic3 , pic4 , pic5],
-        pro_name : "demo 1",
+        pro_name : "dssemo 1",
         description:"Description is any type of communication that aims to make vivid a place, object, person, group, or other physical entity",
         star:"yes",
         price:2000,
         category:"sofa",
         color:"red",
         type:"wood",
-        size:'3x4',
-        link_name:'all'
+        size:'2',
+        link_name:'all',
+         "images": [
+                {
+                    "image": pic1
+                },
+                {
+                    "image": pic6
+                }, {
+                    "image": pic3
+                }
+            ]
     },{
         id :2,
-        pro_img:[pic2,pic3 , pic4 , pic5],
         pro_name : "blue 2",
         description:"Description is any type of communication that aims to make vivid a place, object, person, group, or other physical entity",
         star:"yes",
@@ -28,8 +36,18 @@ export const products = [
         category:"sofa",
         color:"blue",
         type:"metal",
-        size:'2',
-        link_name:'all'
+        size:'3',
+        link_name:'all',
+          images: [
+                {
+                    image: pic3
+                },
+                {
+                    image: pic4
+                }, {
+                    image: pic5
+                }
+            ]
     },{
         id :3,
         pro_img:[pic3 , pic1 , pic2 ],

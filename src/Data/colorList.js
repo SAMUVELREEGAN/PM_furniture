@@ -1,6 +1,10 @@
 export const colorList = [
-    "Red", "Blue", "Green", "Yellow", "Orange", 
-    "Purple", "Pink", "Black", "White", "Grey", 
-    "Brown", "Beige", 
+    {
+      id:1,
+      color_name : "Red"
+    },{
+      id:2,
+      color_name : "Blue"
+    },
   ];
   

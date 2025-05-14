@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import{ useState, useEffect } from 'react';
 import './Arrivals.css';
 import { products } from '../Data/Product';
 import { FaIndianRupeeSign } from "react-icons/fa6";    
@@ -53,9 +53,11 @@ const Arrivals = () => {
                   />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title text-center my-2">{product.pro_name}</h5>
-                  <p style={{textAlign:"center"}}>Price<FaIndianRupeeSign /> {product.price}</p>
-                  <p className="item-descriptionko">{product.description}</p>
+                  <div style={{display:"flex" , flexWrap:"wrap" , justifyContent:"space-between" , margin:"10px 0px"}} >
+                    <h5 className="card-title">{product.pro_name}</h5>
+                  <h5>Price<FaIndianRupeeSign /> {product.price}</h5>
+                  </div>
+                  <p className="item-descriptionx">{product.description}</p>
                 </div>
               </Link>
 

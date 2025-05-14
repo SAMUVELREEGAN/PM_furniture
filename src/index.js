@@ -7,12 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'swiper/css';
+import { MyContextProvider } from './context/MyContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
+ <MyContextProvider>
+    <Router>
     <App />
   </Router>
+  </MyContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
