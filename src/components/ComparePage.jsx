@@ -1,8 +1,10 @@
 import React, { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import './ComparePage.css'; // Optional for styling
+import { useMyContext } from '../context/MyContext';
 
 const ComparePage = () => {
+   const {BASE_URL} = useMyContext()
   const location = useLocation();
   const products = useMemo(() => location.state?.products || [], [location.state]);
 
@@ -38,7 +40,11 @@ const ComparePage = () => {
                     <td key={i}>
                       {attr.key === "pro_img" ? (
                         <img
-                          src={Array.isArray(product.pro_img) ? product.pro_img[0] : product.pro_img}
+                          src={
+                          product.images && product.images.length > 0
+                            ? `${BASE_URL}${product.images[0].image}`
+                            : ''
+                        }
                           alt={product.pro_name}
                           style={{ maxHeight: '150px', objectFit: 'contain', width: '100%' }}
                         />

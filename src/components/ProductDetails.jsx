@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { products } from '../Data/Product';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import Item from './Item';
 import '../components/ProductDetails.css';
@@ -11,8 +10,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { FaShareSquare } from "react-icons/fa";
+import { useMyContext } from '../context/MyContext';
 
 const ProductDetails = () => {
+  const { products, BASE_URL } = useMyContext();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { id } = useParams();
   const location = useLocation();
@@ -30,8 +31,6 @@ const ProductDetails = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    console.log(window.location);
-    
   }, [location.pathname]);
 
   useEffect(() => {
@@ -73,7 +72,7 @@ const ProductDetails = () => {
 
   if (!product) return <div className="text-center py-5">Product not found</div>;
 
-  const totalPrice = product.price * quantity;
+  const totalPrice = parseFloat(product.price) * quantity;
 
   return (
     <Container className="product-details-container py-4">
@@ -92,11 +91,14 @@ const ProductDetails = () => {
               modules={[FreeMode, Navigation, Thumbs]}
               className="mySwiper2"
             >
-              {Array.isArray(product.pro_img) &&
-                product.pro_img.map((img, index) => (
+              {Array.isArray(product.images) &&
+                product.images.map((imgObj, index) => (
                   <SwiperSlide key={index}>
                     <div className="carousel-image-wrapper">
-                      <img src={img} alt={`Slide ${index}`} />
+                      <img
+                        src={imgObj.image ? `${BASE_URL}${imgObj.image}` : ''}
+                        alt={`Slide ${index}`}
+                      />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -112,11 +114,15 @@ const ProductDetails = () => {
               modules={[FreeMode, Navigation, Thumbs]}
               className="mySwiper"
             >
-              {Array.isArray(product.pro_img) &&
-                product.pro_img.map((img, index) => (
+              {Array.isArray(product.images) &&
+                product.images.map((imgObj, index) => (
                   <SwiperSlide key={index}>
                     <div className="carousel-image-wrapper">
-                      <img src={img} alt={`Slide ${index}`} className="carousel-img" />
+                      <img
+                        src={imgObj.image ? `${BASE_URL}${imgObj.image}` : ''}
+                        alt={`Thumb ${index}`}
+                        className="carousel-img"
+                      />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -124,10 +130,9 @@ const ProductDetails = () => {
           </div>
 
           <div className='mt-3'>
-            <div style={{ display: "flex", justifyContent: "space-between" }}></div>
             <h2 style={{ color: "#102D59", fontWeight: "700" }}>{product.pro_name}</h2>
             <h2>
-              <span><del className="text-danger">₹{product.price + 200}</del></span> ₹{product.price}
+              <span><del className="text-danger">₹{parseFloat(product.price) + 200}</del></span> ₹{parseFloat(product.price)}
             </h2>
             <p>{product.category}</p>
             <p className='mt-3'>{product.description}</p>
@@ -152,12 +157,13 @@ const ProductDetails = () => {
             >
               {isWishlisted ? "Wishlisted ❤️" : "Add to Wishlist ♡"}
             </button>
-            <button onClick={handleShare} style={{background:"#f0f0f0" , border:"none",borderRadius: "5px", width:"45%",margin: "10px 0px"}}> <span className='me-1'>Share</span><FaShareSquare/></button>
+            <button onClick={handleShare} style={{background:"#f0f0f0", border:"none", borderRadius: "5px", width:"45%", margin: "10px 0px"}}>
+              <span className='me-1'>Share</span><FaShareSquare/>
+            </button>
           </div>
 
           <div style={{
             backgroundColor: "white",
-            height: "fit-content",
             padding: "7%",
             boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)"
           }}>
@@ -165,20 +171,16 @@ const ProductDetails = () => {
             <Form>
               <Form.Group className="mb-3">
                 <Form.Label>Quantity</Form.Label>
-                <div style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  flexWrap: "wrap",
-                  alignItems: "center"
-                }}>
-                  <input
+                <div className="d-flex justify-content-between align-items-center">
+                  <Form.Control
                     type="number"
                     value={quantity}
                     min={1}
                     onChange={(e) => setQuantity(parseInt(e.target.value))}
+                    style={{ maxWidth: '100px' }}
                   />
                   <div className="ms-2">
-                    <strong>Total Price: ₹{totalPrice ? totalPrice : product.price}</strong>
+                    <strong>Total Price: ₹{totalPrice || parseFloat(product.price)}</strong>
                   </div>
                 </div>
               </Form.Group>
@@ -199,20 +201,8 @@ const ProductDetails = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Check
-                  inline
-                  label="Reselling"
-                  name="usage"
-                  type="radio"
-                  id={`reselling`}
-                />
-                <Form.Check
-                  inline
-                  label="End Use"
-                  name="usage"
-                  type="radio"
-                  id={`enduse`}
-                />
+                <Form.Check inline label="Reselling" name="usage" type="radio" id="reselling" />
+                <Form.Check inline label="End Use" name="usage" type="radio" id="enduse" />
               </Form.Group>
 
               <Button type="submit" style={{ backgroundColor: "#102D59" }}>Send Enquiry</Button>

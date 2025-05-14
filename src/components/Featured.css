@@ -34,21 +34,27 @@
 .left-btn {
   position: absolute;
   left: -10px;
-  top: 50%;
+  top: 230px;
   transform: translateY(-50%);
+  background: gray;
+  height: 50px;
+  width: 20px;
 }
 
 .right-btn {
   position: absolute;
   right: -10px;
-  top: 50%;
+  top: 230px;
   transform: translateY(-50%);
+    background: gray;
+  height: 50px;
+  width: 20px;
 }
 
 /* Styling for Product Card */
 .product-card-info {
   height: 460px;
-  width: 250px; /* Fixed width for horizontal scrolling */
+  width: 350px; /* Fixed width for horizontal scrolling */
   margin: 0px 10px;
   background-color: white;
   text-align: center;

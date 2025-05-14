@@ -2,6 +2,8 @@ import './Featured.css';
 import { Link } from 'react-router-dom';
 import { useMyContext } from '../context/MyContext';
 import { useRef } from 'react';
+import { FaChevronLeft } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa6";
 
 const Featured = () => {
   const { products, BASE_URL } = useMyContext();
@@ -28,8 +30,8 @@ const Featured = () => {
 
       {/* Scroll Buttons */}
       <div className="scroll-buttons">
-        <button onClick={scrollLeft} className="scroll-btn left-btn">{'<'}</button>
-        <button onClick={scrollRight} className="scroll-btn right-btn">{'>'}</button>
+        <button onClick={scrollLeft} className="scroll-btn left-btn"><FaChevronLeft style={{position:"relative" , left:"-7px"}}/></button>
+        <button onClick={scrollRight} className="scroll-btn right-btn"><FaAngleRight style={{position:"relative" , left:"-7px"}}/></button>
       </div>
 
       {/* Scrollable Products Container */}

@@ -4,8 +4,10 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 import { TbArmchair2 } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
+import { useMyContext } from '../context/MyContext';
 
 const Wishlist = () => {
+  const {BASE_URL} = useMyContext()
   const [wishlistItems, setWishlistItems] = useState([]);
 
   useEffect(() => {
@@ -32,7 +34,11 @@ const Wishlist = () => {
                 <Link to={`/product/${product.id}`} style={{ textDecoration: "none", color: "black" }}>
                   <div>
                     <img
-                      src={Array.isArray(product.pro_img) ? product.pro_img[0] : product.pro_img}
+                     src={
+                          product.images && product.images.length > 0
+                            ? `${BASE_URL}${product.images[0].image}`
+                            : ''
+                        }
                       alt={product.pro_name}
                       style={{ width: "100%", height: "250px", objectFit: "contain" }}
                     />

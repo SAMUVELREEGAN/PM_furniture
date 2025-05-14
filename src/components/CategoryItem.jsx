@@ -1,7 +1,9 @@
+import { useMyContext } from '../context/MyContext';
 import './CategoryItem.css';
 import { Link, useLocation } from 'react-router-dom';
 
 const CategoryItem = ({ product, onCompare, isCompared }) => {
+  const {BASE_URL} = useMyContext()
   const location = useLocation();
 
   const isDealerPage = location.pathname.startsWith('/dealer');
@@ -15,7 +17,11 @@ const CategoryItem = ({ product, onCompare, isCompared }) => {
     <div className={`${isCompared ? 'card_remove' : ''} category-card`}>
       <div className="category-image-wrapper">
         <img
-          src={Array.isArray(product.pro_img) ? product.pro_img[0] : product.pro_img}
+           src={
+          product.images && product.images.length > 0
+            ? `${BASE_URL}${product.images[0].image}`
+            : ''
+        }
           alt={product.pro_name}
           className="category-image"
         />

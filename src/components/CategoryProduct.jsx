@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { products } from '../Data/Product';
-// import { typeList } from '../Data/typeList';
 import CategoryItem from './CategoryItem';
 import { Container, Row, Col } from 'react-bootstrap';
 import './CategoryProduct.css';
@@ -9,7 +7,7 @@ import logo from '../assets/logo.png';
 import { useMyContext } from '../context/MyContext';
 
 const CategoryProduct = () => {
-  const { categories, colorList ,typeList } = useMyContext();
+  const { categories, colorList, typeList, products } = useMyContext();
   const { categorie, link_name } = useParams();
   const [materialType, setMaterialType] = useState('');
   const [sortOption, setSortOption] = useState('');
@@ -64,7 +62,7 @@ const CategoryProduct = () => {
     }
 
     setFilteredProducts(filtered);
-  }, [categorie, link_name, materialType, sortOption, selectedCategory, selectedColor]);
+  }, [categorie, link_name, materialType, sortOption, selectedCategory, selectedColor, products]);
 
   const handleCompare = (product) => {
     const isAlreadyCompared = compareProducts.some((p) => p.id === product.id);
@@ -105,7 +103,7 @@ const CategoryProduct = () => {
                 value={materialType}
               >
                 <option value="">All Material</option>
-                {typeList.map((item) => ( // Updated reference to typeList
+                {typeList.map((item) => (
                   <option key={item.id} value={item.type_name}>
                     {item.type_name.charAt(0).toUpperCase() + item.type_name.slice(1)}
                   </option>
